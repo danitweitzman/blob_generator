@@ -1,0 +1,13 @@
+{
+  "name": "blob-mixer",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Interactive 3D blob mixer with emotion presets",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+} 
