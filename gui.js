@@ -96,7 +96,19 @@ export function setupGUI(params, meshMaterial, pointsMaterial, bloomPass, applyP
         color: Number(params.color),
         modifier: Number(params.modifier),
         ribAmp: Number(params.ribAmp),
-        ribFreq: Number(params.ribFreq)
+        ribFreq: Number(params.ribFreq),
+        noiseSpeed: Number(params.noiseSpeed),
+        rotationSpeed: Number(params.rotationSpeed),
+        pointMode: Boolean(params.pointMode),
+        pointSize: Number(params.pointSize),
+        useTexture: Boolean(params.useTexture),
+        metalness: Number(params.metalness),
+        roughness: Number(params.roughness),
+        transmission: Number(params.transmission),
+        thickness: Number(params.thickness),
+        clearcoat: Number(params.clearcoat),
+        clearcoatRoughness: Number(params.clearcoatRoughness),
+        envMapIntensity: Number(params.envMapIntensity)
       };
       
       // Add to EMOTIONS object

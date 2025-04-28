@@ -59,7 +59,6 @@ const EMOTIONS = {
   Neutral: { amplitude: 0.2, frequency: 1.5, bloom: 0.3, color: 0xccccff, modifier: 0 },
   Angry:   { amplitude: 0.5, frequency: 3.0, bloom: 0.6, color: 0xff4444, modifier: 0 },
   Sad:     { amplitude: 0.1, frequency: 0.8, bloom: 0.1, color: 0x4444ff, modifier: 1 },
-  Ribs:    { amplitude: 0.1, frequency: 0.8, bloom: 0.1, color: 0x4444ff, modifier: 2, ribAmp: 0.2, ribFreq: 10.0 },
   Curious: { amplitude: 0.3, frequency: 2.2, bloom: 0.4, color: 0x44ff44, modifier: 0 }
 };
 
@@ -117,24 +116,28 @@ function applyPreset(presetName) {
   console.log('Preset data:', preset);
   
   if (preset) {
-    params.amplitude = preset.amplitude;
-    params.frequency = preset.frequency;
-    params.bloom = preset.bloom;
-    params.color = preset.color;
-    params.modifier = preset.modifier;
-    
-    if (preset.ribAmp !== undefined) {
-      params.ribAmp = preset.ribAmp;
-      params.ribFreq = preset.ribFreq;
-    }
+    // Apply all parameters from the preset
+    Object.keys(preset).forEach(key => {
+      if (key in params) {
+        params[key] = preset[key];
+      }
+    });
 
     // Update materials with new color
     if (meshMaterial) {
       meshMaterial.color.setHex(preset.color);
+      meshMaterial.metalness = preset.metalness;
+      meshMaterial.roughness = preset.roughness;
+      meshMaterial.transmission = preset.transmission;
+      meshMaterial.thickness = preset.thickness;
+      meshMaterial.clearcoat = preset.clearcoat;
+      meshMaterial.clearcoatRoughness = preset.clearcoatRoughness;
+      meshMaterial.envMapIntensity = preset.envMapIntensity;
       meshMaterial.needsUpdate = true;
     }
     if (pointsMaterial) {
       pointsMaterial.color.setHex(preset.color);
+      pointsMaterial.size = preset.pointSize;
       pointsMaterial.needsUpdate = true;
     }
     if (bloomPass) {
